@@ -70,8 +70,13 @@ void main(void)
 								if (zero_pulse) {
 									  sync_on_zero_pending = 0;
 										time.h = next_hour;
-										time.m = next_minute;
-										time.s = 59;
+										if (next_minute==0){
+											time.m=23;
+										}
+										else{
+											time.m = next_minute-1;
+										}
+										time.s = 59;//time correction
 										PCF8563_set_time();
 										//display_time();//time is displayed in pcf8563
 							}
